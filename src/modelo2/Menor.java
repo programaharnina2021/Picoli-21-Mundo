@@ -9,4 +9,6 @@ public class Menor extends Ser {
 		// TODO
 		System.out.println("soy un menor");
 	}
+
+	
 }

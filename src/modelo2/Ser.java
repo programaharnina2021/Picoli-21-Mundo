@@ -20,6 +20,12 @@ public class Ser {
 		esperanzaVida = calculaEsperanzaVida(vidaMin, vidaMax);
 	}
 
+	public Ser(Ser ser) {
+		this.edad=ser.edad;
+		this.esperanzaVida=ser.esperanzaVida;
+		this.necesidadVital=ser.necesidadVital;
+	}
+
 	public float getEsperanzaVida() {
 		return esperanzaVida;
 	}
@@ -62,5 +68,12 @@ public class Ser {
 	
 	public void alimentar(int sueldo) {
 		System.out.println("soy un ser a secas");
+	}
+
+	public boolean pasaAAnciano() {
+		return edad==65;
+	}
+	public boolean pasaAAdulto() {
+		return edad==18;
 	}
 }

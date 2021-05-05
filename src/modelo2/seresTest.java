@@ -8,12 +8,23 @@ class seresTest {
 
 	@Test
 	void test() {
-		Menor menor=new Menor();
-		Adulto adulto=new Adulto();
-		Ser ser=new Ser();
-		menor.alimentar(1);
-		adulto.alimentar(1);
-		ser.alimentar(1);
+		Ser ser=new Menor();
+		System.out.println(ser.toString());
+		System.out.println(ser.esperanzaVida);
+		for (int i = 0; i < 120; i++) {
+			ser.envejecer();
+			ser.alimentar(1);
+			//SONDEO o POLLING preguntar todo el tiempo si ha
+			//habido un cambio
+			if(ser.pasaAAdulto()) {
+				ser=new Adulto(ser);
+			}
+			if(ser.pasaAAnciano()){
+				ser=new Ser(ser);
+			}
+		}
+		System.out.println(ser.toString());
+		System.out.println(ser.esperanzaVida);
 	}
 
 }

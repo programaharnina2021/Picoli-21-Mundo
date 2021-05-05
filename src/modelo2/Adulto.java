@@ -4,6 +4,9 @@ public class Adulto extends Ser {
 	private long ahorro;
 	private boolean activo;
 
+	public Adulto(Ser ser) {
+		super(ser);
+	}
 	// Esto solo los adultos
 	// nv 100
 	// ahorros 10
