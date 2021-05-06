@@ -2,7 +2,6 @@ package modelo2;
 
 public class Adulto extends Ser {
 	private long ahorro;
-	private boolean activo;
 
 	public Adulto(Ser ser) {
 		super(ser);
