@@ -1,9 +1,11 @@
 package modelo3strategy;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
+
+import modelo.Coordenada;
 
 class SerTest {
 
@@ -18,7 +20,6 @@ class SerTest {
 	@Test
 	void testRecalculoVidaAnciano() {
 		Comportamiento comportamiento=new Comportamiento() {
-			
 			@Override
 			public float alimentar(int sueldo, float esperanzaVida) {
 				return recalcularVejez(sueldo, esperanzaVida);
@@ -27,10 +28,7 @@ class SerTest {
 				//TODO recalcular la esperanza de vida
 				float coeficiente=(float)sueldo/Edades.anciano.getNecesidadVital();
 				if(coeficiente>=.3f) {
-					//vamos a perder hasta un periodo
-					//TODO calcular algo sencillo
-					float f=.3f/coeficiente;
-					return esperanzaVida-=1-coeficiente;
+					return esperanzaVida-=1;
 				}else {
 					//vamos a perder hasta dos periodos
 				}
