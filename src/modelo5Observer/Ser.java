@@ -1,13 +1,15 @@
-package modelo4Observers;
+package modelo5Observer;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import utiles.Utiles;
 
-public class Ser extends Observable{
+public class Ser{
 	private static final int vidaMax = 120;
 	private static final int vidaMin = 0;
-
+	private MyObservable aAdultos=new MyObservable();
+	private MyObservable aAnciano=new MyObservable();
 	protected float esperanzaVida;
 	protected int edad;
 	private Comportamiento comportamiento;
@@ -27,8 +29,7 @@ public class Ser extends Observable{
 		if(pasaAAdulto()) {
 			//TODO hay que comprobar la viabilidad del menor
 			comportamiento=new Adulto();
-			setChanged();
-			notifyObservers(true);
+			this.aAdultos.notifica(this);
 		}
 		if(pasaAAnciano()) {
 			//Una solucion para no tener clases sin propiedades
@@ -44,8 +45,7 @@ public class Ser extends Observable{
 					return esperanzaVida;
 				}
 			};
-			setChanged();
-			notifyObservers(false);
+			this.aAnciano.notifica(this);
 		}
 		return isAlive();
 	}
@@ -90,5 +90,15 @@ public class Ser extends Observable{
 
 	public boolean pasaAAdulto() {
 		return edad == Edades.menor.getEdadMaxima();
+	}
+
+	public void addAdultoObserver(Observer obj) {
+		aAdultos.addObserver(obj);
+		
+	}
+
+	public void addAncianoObserver(Observer obj) {
+		aAnciano.addObserver(obj);
+		
 	}
 }
