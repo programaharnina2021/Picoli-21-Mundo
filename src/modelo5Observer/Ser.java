@@ -5,11 +5,11 @@ import java.util.Observer;
 
 import utiles.Utiles;
 
-public class Ser{
+public class Ser {
 	private static final int vidaMax = 120;
 	private static final int vidaMin = 0;
-	private MyObservable aAdultos=new MyObservable();
-	private MyObservable aAnciano=new MyObservable();
+	private MyObservable aAdultos = new MyObservable();
+	private MyObservable aAnciano = new MyObservable();
 	protected float esperanzaVida;
 	protected int edad;
 	private Comportamiento comportamiento;
@@ -26,22 +26,24 @@ public class Ser{
 
 	public boolean envejecer() {
 		this.edad++;
-		if(pasaAAdulto()) {
-			//TODO hay que comprobar la viabilidad del menor
-			comportamiento=new Adulto();
+		if (pasaAAdulto()) {
+			// TODO hay que comprobar la viabilidad del menor
+			comportamiento = new Adulto();
 			this.aAdultos.notifica(this);
 		}
-		if(pasaAAnciano()) {
-			//Una solucion para no tener clases sin propiedades
-			//son los objetos anonimos
-			comportamiento=new Comportamiento() {
-				
+		if (pasaAAnciano()) {
+			// Una solucion para no tener clases sin propiedades
+			// son los objetos anonimos
+			//TODO quitar dinero al adulto antes de que se jubile
+			comportamiento = new Comportamiento() {
+
 				@Override
 				public float alimentar(int sueldo, float esperanzaVida) {
 					return recalcularVejez(sueldo, esperanzaVida);
 				}
-				float recalcularVejez(int sueldo,float esperanzaVida){
-					//TODO recalcular la esperanza de vida
+
+				float recalcularVejez(int sueldo, float esperanzaVida) {
+					// TODO recalcular la esperanza de vida
 					return esperanzaVida;
 				}
 			};
@@ -51,7 +53,7 @@ public class Ser{
 	}
 
 	public boolean vivir(int sueldo) {
-		this.esperanzaVida=comportamiento.alimentar(sueldo,this.esperanzaVida);
+		this.esperanzaVida = comportamiento.alimentar(sueldo, this.esperanzaVida);
 		return envejecer();
 	}
 
@@ -94,11 +96,11 @@ public class Ser{
 
 	public void addAdultoObserver(Observer obj) {
 		aAdultos.addObserver(obj);
-		
+
 	}
 
 	public void addAncianoObserver(Observer obj) {
 		aAnciano.addObserver(obj);
-		
+
 	}
 }
